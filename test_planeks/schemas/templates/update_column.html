@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block title %}Schema
+{% endblock %}
+{% block content %}
+    <h2>Update column</h2>
+
+
+    <form method="post">
+    {% csrf_token %}
+
+<div class="form-error">{{ form.non_field_errors }}</div>
+
+
+{% for f in form %}
+<p><label class="form-label" >{{f.label}}: </label>{{ f }}</p>
+<div class="form-error">{{ f.errors }}</div>
+{% endfor %}
+
+    <button type="submit">Update</button>
+        <a href="#">{{column.id}}</a>
+</form>
+<div>
+
+</div>
+    {% for x in columns %}
+        <p>x.title</p>
+    {% endfor %}
+{% endblock %}

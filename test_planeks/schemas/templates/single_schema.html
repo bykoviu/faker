@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% block title %}Schema
+{% endblock %}
+{% block content %}
+<h4>Here will be all user's single schema</h4>
+
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>1</th>
+        {% for column in columns %}
+        <th>
+            <a href="{% url 'update-column' column.id %}">{{ column.title }}</a><br>
+            <a href="{% url 'delete-column' column.id %}">DELETE</a>
+        </th>
+        {% endfor %}
+
+    </tr>
+  </thead>
+  <tbody>
+
+  <tr>
+      <th scope="row">1</th>
+      {% for column in columns %}
+
+          <th>Some fake {{ column.type }} data</th>
+      {% endfor %}
+    </tr>
+
+  </tbody>
+
+    <h2>Add column</h2>
+
+
+    <form method="post">
+    {% csrf_token %}
+
+        <div class="form-error">{{ form.non_field_errors }}</div>
+
+
+        {% for f in form %}
+        <p><label class="form-label" >{{f.label}}: </label>{{ f }}</p>
+        <div class="form-error">{{ f.errors }}</div>
+        {% endfor %}
+
+    <button type="submit">Create</button>
+</form>
+
+<div>
+    <a href="{% url 'create-csv' schema.id %}">Create csv</a>
+</div>
+{% endblock %}

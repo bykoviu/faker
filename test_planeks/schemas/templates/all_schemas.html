@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block title %}Schemas
+{% endblock %}
+{% block content %}
+<h4>Here will be all user's schemas</h4>
+<a href="{% url 'new-schema' %}"><button class="btn btn-outline-success">New schema</button></a>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Title</th>
+      <th scope="col">Modified</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for sch in schemas %}
+  <tr>
+<!--   {{sch.id}}    -->
+      <th scope="row">1</th>
+      <td><a href="{% url 'single-schema' sch.id %}">{{ sch.title }} </a></td>
+      <td>{{ sch.updated }}</td>
+      <td><a href="#">Change</a>|<a href="#">Delete</a></td>
+    </tr>
+  {% endfor %}
+  </tbody>
+    
+
+{% endblock %}
