@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block title %}Login{% endblock%}
+{% block name_page %}<h3 class="masthead-brand">Create new schema</h3>{% endblock%}
+{% block content %}
+
+
+<h1>Create csv</h1>
+{{ schema.id }}
+<form method="post">
+ {% csrf_token %}
+ <label >Enter count of rows in CSV</label>
+ <input name="count" id="count" type="number">
+ <button type="submit" class="btn btn-success">Create CSV</button>
+</form>
+
+{% endblock %}

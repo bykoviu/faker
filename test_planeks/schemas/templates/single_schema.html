@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+{% block title %}Schema
+{% endblock %}
+{% block content %}
+<h4>{{ schema.title}} schema</h4>
+
+
+<table class="table">
+  <thead>
+    <tr>
+
+        {% for column in columns %}
+        <th class="border border-2 border-dark">
+            {{ column.title }}<br>
+            <a class="text-decoration-none" href="{% url 'update-column' column.id %}">Change</a> /
+            <a class="text-danger text-decoration-none" href="{% url 'delete-column' column.id %}">delete</a>
+        </th>
+        {% endfor %}
+
+    </tr>
+  </thead>
+
+
+
+
+    <tbody>
+
+  <tr>
+
+      {% for column in columns %}
+
+          <th class="border border-2 border-dark">Some fake {{ column.type }} data</th>
+      {% endfor %}
+    </tr>
+
+  </tbody>
+</table>
+
+</div>
+    {% if columns %}
+    <div>
+    <a href="{% url 'make-csv' schema.id %}"><button class="btn btn-success"> Create csv</button></a>
+</div>
+    {% endif %}
+<!--    <h2>Add column</h2>-->
+
+
+<!--    <form method="post" class="row g-2">-->
+<!--    {% csrf_token %}-->
+
+<!--        <div class="form-error">{{ form.non_field_errors }}</div>-->
+
+
+
+<!--        <div class="row">-->
+<!--            {% for f in form %}-->
+<!--            <div class="col">-->
+<!--              <label class="form-label" >{{f.label}}: </label>{{ f }}-->
+<!--            </div>-->
+<!--            {% endfor %}-->
+<!--            <div class="col">-->
+<!--                <button type="submit">Create</button>-->
+<!--            </div>-->
+<!--        </div>-->
+
+
+
+
+<!--</form>-->
+{% load crispy_forms_tags %}
+<div class="border border-secondary border-3 mt-5 ">
+<form method="post" class="row g-2">
+    {% csrf_token %}
+<h2>Add column</h2>
+<div class="form-error">{{ form.non_field_errors }}</div>
+{% for f in form %}
+<div class="col">
+    {{ f|as_crispy_field }}
+</div>
+    {% endfor %}
+    <div class="col"><button class="btn btn-success" type="submit">Add column</button></div>
+</form>
+</div>
+
+{% endblock %}

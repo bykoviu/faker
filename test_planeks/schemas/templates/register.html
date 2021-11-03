@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block title %}Register{% endblock%}
+{% block name_page %}<h3 class="masthead-brand">Register Page</h3>{% endblock%}
+
+{% block content %}
+{% load crispy_forms_tags %}
+<div class="border border-secondary border-3 mt-5 mr-auto ml-auto " style="margin-right: auto; margin-left: auto; width: 800px; ">
+<form method="post">
+    {% csrf_token %}
+    <h1>Register</h1>
+
+    <div style="margin-right: auto; margin-left: auto; width: 400px; ">
+    {{ form|crispy }}
+    </div>
+<!--<label for="f.lable.email">Email</label>-->
+<!--      <input type="email" class="form-control" id="inputEmail4" placeholder="Email">-->
+<!--{% for f in form %}-->
+<!--&lt;!&ndash;    <p>{{ f.label }}</p>&ndash;&gt;-->
+<!--    <p><label class="form-label" for="{{ f.label }}"></label>{{ f }}</p>-->
+<!--&lt;!&ndash;<div class="form-error">{{ f.errors }}</div>&ndash;&gt;-->
+<!--{% endfor %}-->
+
+    <button class="btn btn-success" type="submit">Registration</button>
+</form>
+</div>
+
+
+
+{% endblock %}

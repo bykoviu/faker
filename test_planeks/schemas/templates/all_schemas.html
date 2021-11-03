@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block title %}Schemas
+{% endblock %}
+{% block content %}
+<h4 xmlns="http://www.w3.org/1999/html">{{ request.user.username }}, here you can see all your schemas</h4>
+<a href="{% url 'new-schema' %}"><button class="btn btn-outline-success">New schema</button></a>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Title</th>
+      <th scope="col">Modified</th>
+      <th scope="col">Actions</th>
+      {% if col_exist %}
+        <th scope="col">Create file</th>
+      {% endif %}
+        <th scope="col">Download</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for sch in schemas %}
+  <tr>
+<!--   {{sch.id}}    -->
+      <th scope="row">1</th>
+      {{ sch.all_column }}
+      <td><a href="{% url 'single-schema' sch.id %}">{{ sch.title }} </a></td>
+      <td>{{ sch.updated }}</td>
+      <td><a href="{% url 'update-schema' sch.id %}">Change</a>|<a href="{% url 'delete-schema' sch.id %}">Delete</a></td>
+      {% if sch.all_column %}
+      <td><a href="{% url 'make-csv' sch.id %}"><button class="btn btn-success"> Create csv</button></a></td>
+      {% else %}
+      <td><p>add column</p></td>
+      {% endif %}
+
+      {% if sch.file_exists %}
+      <td><a href="{% url 'download-file' sch.id %}"><button class="btn btn-success"> download file</button</a></td>
+      {% else %}
+      <td><p>nothing to download</p></td>
+      {% endif %}
+
+    </tr>
+  {% endfor %}
+  </tbody>
+ </div>
+
+{% endblock %}

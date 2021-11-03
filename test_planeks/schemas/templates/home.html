@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<!--        <p class="lead">Hello! Here you can make files with fake(dummy) data. For the next action please login your account, using your username and password-->
+<!--        </p>-->
+<!--        <p class="lead">-->
+<!--          <a href="{% url 'login' %}" class="btn btn-lg btn-secondary">LogIn</a>-->
+<!--          <a href="{% url 'register' %}" methods="post" class="btn btn-lg btn-secondary">Registration</a>-->
+<!--        </p>-->
+
+
+{% if user.is_authenticated %}
+  Hi {{ user.username }}!
+{% else %}
+  <h1>You need to login or registrate</h1>
+
+{% endif %}
+
+{% endblock %}
